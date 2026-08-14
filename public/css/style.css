@@ -275,3 +275,49 @@ nav a:hover {
     }
 
 }
+.admin-page {
+    width: min(900px, 90%);
+    margin: 60px auto;
+}
+
+.admin-page form {
+    display: grid;
+    gap: 15px;
+}
+
+.admin-page input,
+.admin-page textarea {
+    padding: 12px;
+    font: inherit;
+}
+
+.admin-page button {
+    padding: 14px 20px;
+    border: 0;
+    background: #111;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.admin-comic {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 25px;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-comic img {
+    width: 120px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ajouter une BD</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<main class="admin-page">
+
+    <h1>Ajouter une BD</h1>
+
+    <form
+        action="/admin/bd/ajouter"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <label for="title">Titre</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
+
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            name="description"
+            rows="6"
+            required
+        ></textarea>
+
+        <label for="coverImage">Couverture</label>
+        <input
+            type="file"
+            id="coverImage"
+            name="coverImage"
+            accept="image/*"
+            required
+        >
+
+        <label for="pdfFile">BD au format PDF</label>
+        <input
+            type="file"
+            id="pdfFile"
+            name="pdfFile"
+            accept="application/pdf"
+            required
+        >
+
+        <label>
+            <input
+                type="checkbox"
+                name="downloadable"
+            >
+            Autoriser le téléchargement
+        </label>
+
+        <label>
+            <input
+                type="checkbox"
+                name="published"
+                checked
+            >
+            Publier la BD
+        </label>
+
+        <button type="submit">
+            Ajouter la BD
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+</html>
