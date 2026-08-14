@@ -6,10 +6,135 @@
     <title>Portfolio BD</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    <main>
-        <h1>Portfolio BD</h1>
-        <p>Le site fonctionne 🎨</p>
-    </main>
+
+<header class="header">
+    <div class="container nav">
+        <a href="/" class="logo">Nom de l'artiste</a>
+
+        <nav>
+            <a href="#bd">BD</a>
+            <a href="#about">À propos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <p class="eyebrow">Auteur • Illustrateur • BD</p>
+
+            <h1>Un univers dessiné<br>en noir & blanc.</h1>
+
+            <p class="hero-text">
+                Découvrez mes bandes dessinées, mes personnages
+                et mon univers graphique.
+            </p>
+
+            <a href="#bd" class="btn">Découvrir mes BD</a>
+        </div>
+    </section>
+
+
+    <section id="bd" class="section container">
+        <div class="section-heading">
+            <p class="eyebrow">Publications</p>
+            <h2>Mes bandes dessinées</h2>
+        </div>
+
+        <div class="comics-grid">
+
+            <article class="comic-card">
+                <div class="comic-cover placeholder">
+                    Couverture
+                </div>
+
+                <div class="comic-content">
+                    <p class="comic-number">BD N°01</p>
+
+                    <h3>Titre de la BD</h3>
+
+                    <p>
+                        Une courte description de la bande dessinée
+                        apparaîtra ici.
+                    </p>
+
+                    <div class="comic-actions">
+                        <a href="#" class="btn">Lire</a>
+                        <a href="#" class="btn btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="comic-card">
+                <div class="comic-cover placeholder">
+                    Couverture
+                </div>
+
+                <div class="comic-content">
+                    <p class="comic-number">BD N°02</p>
+
+                    <h3>Une prochaine histoire</h3>
+
+                    <p>
+                        Les futures créations de l'artiste pourront
+                        être ajoutées directement depuis son espace admin.
+                    </p>
+
+                    <div class="comic-actions">
+                        <a href="#" class="btn">Lire</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <section id="about" class="about">
+        <div class="container about-content">
+
+            <div>
+                <p class="eyebrow">L'artiste</p>
+                <h2>À propos</h2>
+            </div>
+
+            <p>
+                Cette partie accueillera la présentation de l'artiste,
+                son parcours en école d'art et quelques mots sur
+                son univers graphique.
+            </p>
+
+        </div>
+    </section>
+
+
+    <section id="contact" class="section container contact">
+
+        <p class="eyebrow">Contact</p>
+
+        <h2>Une question ou envie de découvrir mon travail ?</h2>
+
+        <a href="mailto:contact@example.com" class="btn">
+            Me contacter
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            © 2026 Nom de l'artiste —
+            Site réalisé par Les Sites de David
+        </p>
+    </div>
+</footer>
+
 </body>
 </html>

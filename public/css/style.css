@@ -1,13 +1,277 @@
-body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-main {
-    min-height: 100vh;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f1ea;
+    color: #111;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+
+/* HEADER */
+
+.header {
+    background: #111;
+    color: white;
+}
+
+.nav {
+    min-height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    opacity: 0.8;
+}
+
+nav a:hover {
+    opacity: 1;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 650px;
+    background: #1a1a1a;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.hero-overlay {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+.hero h1 {
+    margin: 15px 0;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    max-width: 900px;
+}
+
+.hero-text {
+    max-width: 550px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    background: #111;
+    color: white;
+    border: 2px solid #111;
+    padding: 13px 22px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.hero .btn {
+    background: white;
+    color: #111;
+    border-color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #111;
+}
+
+
+/* SECTIONS */
+
+.section {
+    padding: 100px 0;
+}
+
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section h2,
+.about h2,
+.contact h2 {
+    margin: 10px 0;
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+
+/* BD */
+
+.comics-grid {
     display: grid;
-    place-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+
+.comic-card {
+    background: white;
+}
+
+.comic-cover {
+    aspect-ratio: 3 / 4;
+}
+
+.placeholder {
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #111,
+            #111 10px,
+            #1b1b1b 10px,
+            #1b1b1b 20px
+        );
+
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.comic-content {
+    padding: 30px;
+}
+
+.comic-content h3 {
+    margin: 5px 0 15px;
+    font-size: 1.8rem;
+}
+
+.comic-content p {
+    line-height: 1.6;
+}
+
+.comic-number {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.comic-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+
+/* ABOUT */
+
+.about {
+    background: #111;
+    color: white;
+    padding: 100px 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-content > p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+
+/* CONTACT */
+
+.contact {
     text-align: center;
+}
+
+.contact h2 {
+    max-width: 800px;
+    margin: 15px auto 35px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    background: #111;
+    color: #aaa;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+    .nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .hero {
+        min-height: 550px;
+    }
+
+    .comics-grid,
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        gap: 20px;
+    }
+
 }
