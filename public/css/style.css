@@ -321,3 +321,32 @@ nav a:hover {
     aspect-ratio: 3 / 4;
     object-fit: cover;
 }
+.site-footer {
+    background: #111;
+    color: #bbb;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.footer-credit {
+    margin: 0 0 18px;
+    font-size: 14px;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-legal a {
+    color: #ff00c8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-legal a:hover {
+    text-decoration: underline;
+}
