@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modifier mon profil — Loukas</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon1.png">
+</head>
+
+<body>
+
+<main class="admin-page container">
+
+    <div class="admin-header">
+
+        <div>
+            <p class="eyebrow">Administration</p>
+            <h1>Modifier mon profil</h1>
+        </div>
+
+        <a href="/admin" class="btn">
+            ← Retour au dashboard
+        </a>
+
+    </div>
+
+
+    <% if (success) { %>
+
+        <div class="login-error">
+            Profil mis à jour avec succès.
+        </div>
+
+    <% } %>
+
+
+    <form
+        action="/admin/profil"
+        method="POST"
+        enctype="multipart/form-data"
+        class="admin-form"
+    >
+
+        <div class="form-group">
+
+            <label for="aboutText">
+                À propos
+            </label>
+
+            <textarea
+                id="aboutText"
+                name="aboutText"
+                rows="10"
+                placeholder="Présente-toi, parle de ton univers, de tes BD..."
+            ><%= profile.aboutText %></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="contactEmail">
+                Adresse e-mail de contact
+            </label>
+
+            <input
+                type="email"
+                id="contactEmail"
+                name="contactEmail"
+                value="<%= profile.contactEmail %>"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="profileImage">
+                Photo de profil
+            </label>
+
+            <% if (profile.profileImage) { %>
+
+                <div class="profile-preview">
+
+                    <img
+                        src="<%= profile.profileImage %>"
+                        alt="Photo de profil actuelle"
+                    >
+
+                </div>
+
+            <% } %>
+
+            <input
+                type="file"
+                id="profileImage"
+                name="profileImage"
+                accept="image/jpeg,image/png,image/webp"
+            >
+
+            <small>
+                Laisse vide pour conserver la photo actuelle.
+            </small>
+
+        </div>
+
+
+        <button type="submit">
+            Enregistrer les modifications
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+</html>

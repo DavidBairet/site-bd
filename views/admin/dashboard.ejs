@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Administration - Mes BD</title>
+
     <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/images/favicon1.png">
+
 </head>
 
 <body>
 
-<main class="admin-page">
+<main class="admin-page container">
 
     <div class="admin-header">
+
         <div>
+
             <p class="eyebrow">Administration</p>
+
             <h1>Mes BD</h1>
+
         </div>
 
-        <a href="/admin/bd/ajouter" class="btn">
-            + Ajouter une BD
-        </a>
+
+        <div class="admin-header-actions">
+
+            <a href="/admin/profil" class="btn">
+                Modifier mon profil
+            </a>
+
+
+            <a href="/admin/bd/ajouter" class="btn">
+                + Ajouter une BD
+            </a>
+
+
+            <form action="/admin/logout" method="POST">
+
+                <button type="submit" class="btn-delete">
+                    Se déconnecter
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
+
 
     <% if (comics.length === 0) { %>
 
         <div class="admin-empty">
-            <h2>Aucune BD pour le moment</h2>
+
+            <h2>
+                Aucune BD pour le moment
+            </h2>
+
             <p>
                 Ajoute ta première bande dessinée pour commencer.
             </p>
@@ -33,11 +70,14 @@
             <a href="/admin/bd/ajouter" class="btn">
                 Ajouter ma première BD
             </a>
+
         </div>
+
 
     <% } else { %>
 
         <div class="admin-list">
+
 
             <% comics.forEach(comic => { %>
 
@@ -48,33 +88,79 @@
                         alt="Couverture de <%= comic.title %>"
                     >
 
-                    <div>
-                        <h2><%= comic.title %></h2>
+
+                    <div class="admin-comic-content">
+
+                        <h2>
+                            <%= comic.title %>
+                        </h2>
+
 
                         <p>
+
                             Statut :
+
                             <strong>
                                 <%= comic.published ? 'Publié' : 'Brouillon' %>
                             </strong>
+
                         </p>
 
+
                         <p>
+
                             Téléchargement :
+
                             <strong>
                                 <%= comic.downloadable ? 'Autorisé' : 'Désactivé' %>
                             </strong>
+
                         </p>
+
+
+                        <div class="admin-actions">
+
+                            <a
+                                href="<%= comic.pdfFile %>"
+                                target="_blank"
+                                rel="noopener"
+                                class="btn"
+                            >
+                                Voir le PDF
+                            </a>
+
+
+                            <form
+                                action="/admin/bd/<%= comic._id %>/supprimer"
+                                method="POST"
+                                onsubmit="return confirm('Voulez-vous vraiment supprimer cette BD ? Cette action est définitive.');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="btn-delete"
+                                >
+                                    Supprimer
+                                </button>
+
+                            </form>
+
+                        </div>
+
                     </div>
 
                 </article>
 
             <% }) %>
 
+
         </div>
 
     <% } %>
 
+
 </main>
 
 </body>
+
 </html>

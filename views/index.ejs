@@ -1,106 +1,181 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio BD</title>
+
+    <title>Portfolio BD - Loukas</title>
+
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon1.png">
 </head>
 
 <body>
 
 <header class="header">
     <div class="container nav">
-        <a href="/" class="logo">Nom de l'artiste</a>
+
+        <a href="/" class="logo">
+            Loukas
+        </a>
 
         <nav>
             <a href="#bd">BD</a>
             <a href="#about">À propos</a>
             <a href="#contact">Contact</a>
         </nav>
+
     </div>
 </header>
 
+
 <main>
 
+    <!-- HERO -->
+
     <section class="hero">
+
         <div class="hero-overlay">
-            <p class="eyebrow">Auteur • Illustrateur • BD</p>
 
-            <h1>Un univers dessiné<br>en noir & blanc.</h1>
-
-            <p class="hero-text">
-                Découvrez mes bandes dessinées, mes personnages
-                et mon univers graphique.
+            <p class="eyebrow">
+                Auteur • Illustrateur • Bande dessinée
             </p>
 
-            <a href="#bd" class="btn">Découvrir mes BD</a>
+            <h1>
+                Bienvenue dans<br>
+                mon univers.
+            </h1>
+
+            <p class="hero-text">
+                Découvrez mes bandes dessinées, mes illustrations
+                et les personnages qui peuplent mon univers.
+            </p>
+
+            <a href="#bd" class="btn">
+                Découvrir mes créations
+            </a>
+
         </div>
+
     </section>
 
 
+    <!-- BANDES DESSINÉES -->
+
     <section id="bd" class="section container">
+
         <div class="section-heading">
-            <p class="eyebrow">Publications</p>
-            <h2>Mes bandes dessinées</h2>
+
+            <p class="eyebrow">
+                Publications
+            </p>
+
+            <h2>
+                Mes bandes dessinées
+            </h2>
+
         </div>
+
 
         <div class="comics-grid">
 
-            <article class="comic-card">
-                <div class="comic-cover placeholder">
-                    Couverture
-                </div>
+            <% if (comics && comics.length > 0) { %>
 
-                <div class="comic-content">
-                    <p class="comic-number">BD N°01</p>
+                <% comics.forEach((comic, index) => { %>
 
-                    <h3>Titre de la BD</h3>
+                    <article class="comic-card">
 
-                    <p>
-                        Une courte description de la bande dessinée
-                        apparaîtra ici.
-                    </p>
+                        <div class="comic-cover">
 
-                    <div class="comic-actions">
-                        <a href="#" class="btn">Lire</a>
-                        <a href="#" class="btn btn-outline">Télécharger</a>
-                    </div>
-                </div>
-            </article>
+                            <img
+                                src="<%= comic.coverImage %>"
+                                alt="Couverture de <%= comic.title %>"
+                                loading="lazy"
+                            >
 
-            <article class="comic-card">
-                <div class="comic-cover placeholder">
-                    Couverture
-                </div>
+                        </div>
 
-                <div class="comic-content">
-                    <p class="comic-number">BD N°02</p>
 
-                    <h3>Une prochaine histoire</h3>
+                        <div class="comic-content">
 
-                    <p>
-                        Les futures créations de l'artiste pourront
-                        être ajoutées directement depuis son espace admin.
-                    </p>
+                            <p class="comic-number">
+                                BD N°<%= String(index + 1).padStart(2, '0') %>
+                            </p>
 
-                    <div class="comic-actions">
-                        <a href="#" class="btn">Lire</a>
-                    </div>
-                </div>
-            </article>
+                            <h3>
+                                <%= comic.title %>
+                            </h3>
+
+                            <p>
+                                <%= comic.description %>
+                            </p>
+
+
+                            <div class="comic-actions">
+
+                                <a
+                                    href="<%= comic.pdfFile %>"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn"
+                                >
+                                    Lire
+                                </a>
+
+
+                                <% if (comic.downloadable) { %>
+
+                                    <a
+                                        href="<%= comic.pdfFile %>"
+                                        download
+                                        class="btn btn-outline"
+                                    >
+                                        Télécharger
+                                    </a>
+
+                                <% } %>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                <% }) %>
+
+
+            <% } else { %>
+
+                <p>
+                    Aucune bande dessinée disponible pour le moment.
+                </p>
+
+            <% } %>
 
         </div>
+
     </section>
 
 
+    <!-- À PROPOS -->
+
     <section id="about" class="about">
+
         <div class="container about-content">
 
             <div>
-                <p class="eyebrow">L'artiste</p>
-                <h2>À propos</h2>
+
+                <p class="eyebrow">
+                    L'artiste
+                </p>
+
+                <h2>
+                    À propos
+                </h2>
+
             </div>
+
 
             <p>
                 Cette partie accueillera la présentation de l'artiste,
@@ -109,16 +184,26 @@
             </p>
 
         </div>
+
     </section>
 
 
+    <!-- CONTACT -->
+
     <section id="contact" class="section container contact">
 
-        <p class="eyebrow">Contact</p>
+        <p class="eyebrow">
+            Contact
+        </p>
 
-        <h2>Une question ou envie de découvrir mon travail ?</h2>
+        <h2>
+            Une question ou envie de découvrir mon travail ?
+        </h2>
 
-        <a href="mailto:contact@example.com" class="btn">
+        <a
+            href="mailto:danslaforetfanzine@gmail.com"
+            class="btn"
+        >
             Me contacter
         </a>
 
@@ -127,7 +212,8 @@
 </main>
 
 
-
 <%- include('partials/footer') %>
+
 </body>
+
 </html>

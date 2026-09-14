@@ -1,3 +1,7 @@
+/* =========================
+   BASE
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -24,7 +28,9 @@ a {
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header {
     background: #111;
@@ -50,6 +56,7 @@ nav {
 
 nav a {
     opacity: 0.8;
+    transition: opacity 0.2s;
 }
 
 nav a:hover {
@@ -57,35 +64,56 @@ nav a:hover {
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    min-height: 650px;
-    background: #1a1a1a;
-    color: white;
+    min-height: 90vh;
     display: flex;
     align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.75)
+        ),
+        url("/images/banniere.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
 }
 
 .hero-overlay {
     width: min(1100px, 90%);
     margin: 0 auto;
+    padding: 100px 0;
 }
 
 .hero h1 {
-    margin: 15px 0;
-    font-size: clamp(3rem, 8vw, 6.5rem);
+    max-width: 800px;
+    margin: 15px 0 20px;
+
+    font-size: clamp(3rem, 7vw, 6rem);
     line-height: 0.95;
-    max-width: 900px;
 }
 
 .hero-text {
     max-width: 550px;
+    margin-bottom: 30px;
+
     font-size: 1.2rem;
-    line-height: 1.7;
-    color: #ccc;
-    margin-bottom: 35px;
+    line-height: 1.6;
+    color: #ddd;
 }
+
+
+/* =========================
+   PETITS TITRES
+========================= */
 
 .eyebrow {
     text-transform: uppercase;
@@ -95,16 +123,25 @@ nav a:hover {
 }
 
 
-/* BUTTONS */
+/* =========================
+   BOUTONS
+========================= */
 
 .btn {
     display: inline-block;
+    padding: 13px 22px;
+
     background: #111;
     color: white;
+
     border: 2px solid #111;
-    padding: 13px 22px;
+
     font-weight: bold;
-    transition: 0.2s;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        color 0.2s;
 }
 
 .hero .btn {
@@ -123,7 +160,9 @@ nav a:hover {
 }
 
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
     padding: 100px 0;
@@ -137,27 +176,55 @@ nav a:hover {
 .about h2,
 .contact h2 {
     margin: 10px 0;
+
     font-size: clamp(2rem, 5vw, 4rem);
 }
 
 
-/* BD */
+/* =========================
+   BANDES DESSINÉES
+========================= */
 
 .comics-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: start;
 }
 
 .comic-card {
     background: white;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.comic-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .comic-cover {
+    width: 100%;
     aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+.comic-cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
 }
 
 .placeholder {
+    width: 100%;
+    height: 100%;
+
     background:
         repeating-linear-gradient(
             45deg,
@@ -168,19 +235,22 @@ nav a:hover {
         );
 
     color: white;
+
     display: grid;
     place-items: center;
-    font-size: 2rem;
+
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
 .comic-content {
-    padding: 30px;
+    padding: 22px;
 }
 
 .comic-content h3 {
-    margin: 5px 0 15px;
-    font-size: 1.8rem;
+    margin: 5px 0 12px;
+
+    font-size: 1.5rem;
 }
 
 .comic-content p {
@@ -188,7 +258,10 @@ nav a:hover {
 }
 
 .comic-number {
+    margin: 0;
+
     font-size: 0.75rem;
+
     text-transform: uppercase;
     letter-spacing: 0.15em;
 }
@@ -196,34 +269,44 @@ nav a:hover {
 .comic-actions {
     display: flex;
     flex-wrap: wrap;
+
     gap: 10px;
-    margin-top: 25px;
+
+    margin-top: 22px;
 }
 
 
-/* ABOUT */
+/* =========================
+   À PROPOS
+========================= */
 
 .about {
+    padding: 100px 0;
+
     background: #111;
     color: white;
-    padding: 100px 0;
 }
 
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     gap: 80px;
+
     align-items: center;
 }
 
 .about-content > p {
     font-size: 1.2rem;
     line-height: 1.8;
+
     color: #ccc;
 }
 
 
-/* CONTACT */
+/* =========================
+   CONTACT
+========================= */
 
 .contact {
     text-align: center;
@@ -231,64 +314,116 @@ nav a:hover {
 
 .contact h2 {
     max-width: 800px;
+
     margin: 15px auto 35px;
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
-.footer {
+.site-footer {
+    padding: 35px 20px;
+
     background: #111;
-    color: #aaa;
-    padding: 30px 0;
+    color: #bbb;
+
     text-align: center;
-    font-size: 0.85rem;
+}
+
+.footer-credit {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+}
+
+.footer-legal {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.footer-legal a {
+    color: #ff00c8;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    text-decoration: underline;
 }
 
 
-/* MOBILE */
+/* =========================
+   ADMINISTRATION
+========================= */
 
-@media (max-width: 750px) {
-
-    .nav {
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
-        padding: 20px 0;
-    }
-
-    nav {
-        gap: 15px;
-    }
-
-    .hero {
-        min-height: 550px;
-    }
-
-    .comics-grid,
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-
-    .about-content {
-        gap: 20px;
-    }
-
-}
 .admin-page {
-    width: min(900px, 90%);
+    width: calc(100% - 40px);
+    max-width: 1100px;
     margin: 60px auto;
+    padding: 0;
 }
 
-.admin-page form {
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.admin-header-actions form {
+    margin: 0;
+    display: block;
+}
+
+.admin-empty {
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.admin-empty h2 {
+    margin-bottom: 15px;
+}
+
+.admin-empty p {
+    margin-bottom: 25px;
+}
+
+/* Formulaire d'ajout uniquement */
+.admin-page > form,
+.admin-form {
     display: grid;
     gap: 15px;
 }
 
 .admin-page input,
 .admin-page textarea {
+    width: 100%;
     padding: 12px;
     font: inherit;
+}
+
+.admin-page textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 .admin-page button {
@@ -300,20 +435,17 @@ nav a:hover {
     cursor: pointer;
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
+.admin-list {
+    width: 100%;
 }
 
 .admin-comic {
     display: grid;
     grid-template-columns: 120px 1fr;
     gap: 25px;
-    background: white;
     padding: 20px;
     margin-bottom: 20px;
+    background: white;
 }
 
 .admin-comic img {
@@ -321,32 +453,300 @@ nav a:hover {
     aspect-ratio: 3 / 4;
     object-fit: cover;
 }
-.site-footer {
-    background: #111;
-    color: #bbb;
-    text-align: center;
-    padding: 35px 20px;
+
+.admin-comic-content {
+    min-width: 0;
 }
 
-.footer-credit {
-    margin: 0 0 18px;
-    font-size: 14px;
+.admin-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.footer-legal {
+.admin-actions form {
+    margin: 0;
+    display: block;
+}
+
+.btn-delete {
+    display: inline-block;
+    padding: 13px 22px;
+    border: 2px solid #b00020;
+    background: #b00020;
+    color: white;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+
+/* =========================
+   TABLETTE
+========================= */
+
+@media (max-width: 1000px) and (min-width: 751px) {
+
+    .comics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .nav {
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        padding: 20px 0;
+    }
+
+    nav {
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 75vh;
+
+        background-position: center;
+    }
+
+    .hero-overlay {
+        padding: 70px 0;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.7rem, 13vw, 4.5rem);
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .comics-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .about {
+        padding: 70px 0;
+    }
+
+    .admin-page {
+        width: calc(100% - 30px);
+        max-width: 1100px;
+        margin: 30px auto;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-header-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-header-actions .btn,
+    .admin-header-actions form,
+    .admin-header-actions button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .admin-comic {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .admin-comic img {
+        width: 90px;
+    }
+}
+
+
+/* =========================
+   PETITS ÉCRANS
+========================= */
+
+@media (max-width: 480px) {
+
+    nav {
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        min-height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .comic-content {
+        padding: 20px;
+    }
+
+    .comic-actions {
+        flex-direction: column;
+    }
+
+    .comic-actions .btn {
+        text-align: center;
+    }
+
+    .admin-comic {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-comic img {
+        width: 120px;
+    }
+}
+/* =========================
+   PAGES LÉGALES
+========================= */
+
+.legal-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+.legal-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.legal-container h1 {
+    margin-bottom: 40px;
+}
+
+.legal-container section {
+    margin: 40px 0;
+}
+
+.legal-container h2 {
+    margin-bottom: 15px;
+}
+
+.legal-container p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.legal-container a {
+    color: #ff00aa;
+}
+
+.legal-back {
+    display: inline-block;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.legal-back:hover,
+.legal-container a:hover {
+    text-decoration: underline;
+}
+
+.legal-update {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+/* =========================
+   CONNEXION ADMIN
+========================= */
+
+.admin-login {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    padding: 30px 20px;
 }
 
-.footer-legal a {
-    color: #ff00c8;
-    text-decoration: none;
-    font-weight: 600;
+.login-container {
+    width: 100%;
+    max-width: 450px;
 }
 
-.footer-legal a:hover {
-    text-decoration: underline;
+.login-container h1 {
+    margin-bottom: 15px;
+}
+
+.login-container > p {
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    font-size: 1rem;
+}
+
+.login-form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.login-error {
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid;
+}
+
+.login-links {
+    margin-top: 20px;
 }

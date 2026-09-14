@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,26 @@
     <title>Ajouter une BD</title>
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon1.png">
 </head>
 
 <body>
 
 <main class="admin-page">
 
-    <h1>Ajouter une BD</h1>
+    <div class="admin-header">
+
+        <div>
+            <p class="eyebrow">Administration</p>
+            <h1>Ajouter une BD</h1>
+        </div>
+
+        <a href="/admin" class="btn">
+            ← Retour au dashboard
+        </a>
+
+    </div>
+
 
     <form
         action="/admin/bd/ajouter"
@@ -21,7 +35,10 @@
         enctype="multipart/form-data"
     >
 
-        <label for="title">Titre</label>
+        <label for="title">
+            Titre
+        </label>
+
         <input
             type="text"
             id="title"
@@ -29,7 +46,11 @@
             required
         >
 
-        <label for="description">Description</label>
+
+        <label for="description">
+            Description
+        </label>
+
         <textarea
             id="description"
             name="description"
@@ -37,7 +58,11 @@
             required
         ></textarea>
 
-        <label for="coverImage">Couverture</label>
+
+        <label for="coverImage">
+            Couverture
+        </label>
+
         <input
             type="file"
             id="coverImage"
@@ -46,7 +71,11 @@
             required
         >
 
-        <label for="pdfFile">BD au format PDF</label>
+
+        <label for="pdfFile">
+            BD au format PDF
+        </label>
+
         <input
             type="file"
             id="pdfFile"
@@ -55,6 +84,7 @@
             required
         >
 
+
         <label>
             <input
                 type="checkbox"
@@ -62,6 +92,7 @@
             >
             Autoriser le téléchargement
         </label>
+
 
         <label>
             <input
@@ -72,6 +103,7 @@
             Publier la BD
         </label>
 
+
         <button type="submit">
             Ajouter la BD
         </button>
@@ -81,4 +113,5 @@
 </main>
 
 </body>
+
 </html>
