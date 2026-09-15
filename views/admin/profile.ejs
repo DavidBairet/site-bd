@@ -19,7 +19,7 @@
 
         <div>
             <p class="eyebrow">Administration</p>
-            <h1>Modifier mon profil</h1>
+            <h1>Modifier mon à propos</h1>
         </div>
 
         <a href="/admin" class="btn">
@@ -56,7 +56,7 @@
                 name="aboutText"
                 rows="10"
                 placeholder="Présente-toi, parle de ton univers, de tes BD..."
-            ><%= profile.aboutText %></textarea>
+            ><%= profile.aboutText || '' %></textarea>
 
         </div>
 
@@ -71,7 +71,7 @@
                 type="email"
                 id="contactEmail"
                 name="contactEmail"
-                value="<%= profile.contactEmail %>"
+                value="<%= profile.contactEmail || '' %>"
                 required
             >
 
@@ -84,6 +84,7 @@
                 Photo de profil
             </label>
 
+
             <% if (profile.profileImage) { %>
 
                 <div class="profile-preview">
@@ -95,7 +96,20 @@
 
                 </div>
 
+
+                <label class="delete-image-option">
+
+                    <input
+                        type="checkbox"
+                        name="deleteProfileImage"
+                    >
+
+                    Supprimer la photo actuelle
+
+                </label>
+
             <% } %>
+
 
             <input
                 type="file"
@@ -103,6 +117,7 @@
                 name="profileImage"
                 accept="image/jpeg,image/png,image/webp"
             >
+
 
             <small>
                 Laisse vide pour conserver la photo actuelle.
@@ -120,4 +135,5 @@
 </main>
 
 </body>
+
 </html>

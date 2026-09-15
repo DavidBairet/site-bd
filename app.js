@@ -9,6 +9,7 @@ const path = require('path');
 
 const adminRoutes = require('./routes/admin');
 const Comic = require('./models/Comic');
+const Profile = require('./models/Profile');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,7 +40,6 @@ app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARES
 // =========================
 
-// Lecture des formulaires
 app.use(express.urlencoded({ extended: true }));
 
 
@@ -66,7 +66,10 @@ app.use(session({
 }));
 
 
-// Fichiers statiques : CSS, images, etc.
+// =========================
+// FICHIERS STATIQUES
+// =========================
+
 app.use(
     express.static(
         path.join(__dirname, 'public')
@@ -79,6 +82,7 @@ app.use(
 // =========================
 
 app.get('/', async (req, res) => {
+
     try {
 
         const comics = await Comic.find({
@@ -87,21 +91,25 @@ app.get('/', async (req, res) => {
             createdAt: -1
         });
 
+        const profile = await Profile.findOne();
+
         res.render('index', {
-            comics
+            comics,
+            profile
         });
 
     } catch (error) {
 
         console.error(
-            'Erreur lors du chargement des BD :',
+            'Erreur lors du chargement de la page d’accueil :',
             error
         );
 
         res.status(500).send(
-            'Erreur lors du chargement des bandes dessinées'
+            'Erreur lors du chargement de la page'
         );
     }
+
 });
 
 
@@ -110,11 +118,16 @@ app.get('/', async (req, res) => {
 // =========================
 
 app.get('/mentions-legales', (req, res) => {
+
     res.render('mentions-legales');
+
 });
 
+
 app.get('/confidentialite', (req, res) => {
+
     res.render('confidentialite');
+
 });
 
 
@@ -130,7 +143,11 @@ app.use('/admin', adminRoutes);
 // =========================
 
 app.use((req, res) => {
-    res.status(404).send('Page introuvable');
+
+    res.status(404).send(
+        'Page introuvable'
+    );
+
 });
 
 
@@ -139,7 +156,9 @@ app.use((req, res) => {
 // =========================
 
 app.listen(PORT, () => {
+
     console.log(
         `🚀 Site BD lancé sur http://localhost:${PORT}`
     );
+
 });

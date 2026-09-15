@@ -750,3 +750,140 @@ nav a:hover {
 .login-links {
     margin-top: 20px;
 }
+/* =========================
+   CHAMPS MOT DE PASSE
+========================= */
+
+.password-field {
+    position: relative;
+    width: 100%;
+}
+
+.password-field input {
+    width: 100%;
+    padding-right: 52px;
+}
+
+
+/* Bouton afficher / masquer */
+
+.admin-page .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #111;
+
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Petit effet au survol */
+
+.admin-page .password-toggle:hover {
+    background: rgba(0, 0, 0, 0.06);
+
+    transform:
+        translateY(-50%)
+        scale(1.1);
+}
+
+
+/* Navigation clavier */
+
+.admin-page .password-toggle:focus-visible {
+    outline: 2px solid #111;
+    outline-offset: 2px;
+}
+/* =========================
+   CASES À COCHER ADMIN
+========================= */
+
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.admin-page .checkbox-field input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 2px solid #111;
+    border-radius: 3px;
+
+    background: #fff;
+
+    display: grid;
+    place-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-page .checkbox-field input[type="checkbox"]::before {
+    content: "✓";
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+
+    transform: scale(0);
+
+    transition: transform 0.15s ease;
+}
+
+.admin-page .checkbox-field input[type="checkbox"]:checked {
+    background: #111;
+}
+
+.admin-page .checkbox-field input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.admin-page .checkbox-field input[type="checkbox"]:hover {
+    transform: scale(1.08);
+}
+
+.checkbox-field span {
+    line-height: 1.4;
+}

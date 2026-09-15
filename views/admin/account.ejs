@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mon compte — Loukas</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+</head>
+
+<body>
+
+    <main class="admin-page">
+
+        <div class="admin-container">
+
+            <div class="admin-header">
+
+                <div>
+                    <span class="admin-label">
+                        ADMINISTRATION
+                    </span>
+
+                    <h1>Mon compte</h1>
+                </div>
+
+                <a
+                    href="/admin"
+                    class="btn"
+                >
+                    ← Retour au dashboard
+                </a>
+
+            </div>
+
+
+            <% if (success) { %>
+
+                <div class="success-message">
+                    <%= success %>
+                </div>
+
+            <% } %>
+
+
+            <% if (error) { %>
+
+                <div class="login-error">
+                    <%= error %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/compte"
+                method="POST"
+                class="admin-form"
+            >
+
+                <!-- IDENTIFIANT -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Identifiant
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value="<%= admin.username || '' %>"
+                        required
+                        autocomplete="username"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Adresse e-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<%= admin.email || '' %>"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <hr>
+
+
+                <h2>Changer mon mot de passe</h2>
+
+                <p>
+                    Laisse ces champs vides si tu ne souhaites
+                    pas modifier ton mot de passe.
+                </p>
+
+
+                <!-- MOT DE PASSE ACTUEL -->
+
+                <div class="form-group">
+
+                    <label for="currentPassword">
+                        Mot de passe actuel
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="currentPassword"
+                            name="currentPassword"
+                            autocomplete="current-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="currentPassword"
+                            aria-label="Afficher le mot de passe"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOUVEAU MOT DE PASSE -->
+
+                <div class="form-group">
+
+                    <label for="newPassword">
+                        Nouveau mot de passe
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="newPassword"
+                            name="newPassword"
+                            minlength="8"
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="newPassword"
+                            aria-label="Afficher le mot de passe"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRMATION -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirmer le nouveau mot de passe
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            minlength="8"
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Afficher le mot de passe"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+                    Enregistrer les modifications
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const passwordButtons =
+            document.querySelectorAll(
+                '.password-toggle'
+            );
+
+
+        passwordButtons.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    'click',
+                    () => {
+
+                        const input =
+                            document.getElementById(
+                                button.dataset.target
+                            );
+
+
+                        const isHidden =
+                            input.type === 'password';
+
+
+                        input.type =
+                            isHidden
+                                ? 'text'
+                                : 'password';
+
+
+                        button.textContent =
+                            isHidden
+                                ? '🙈'
+                                : '👁';
+
+
+                        button.setAttribute(
+                            'aria-label',
+                            isHidden
+                                ? 'Masquer le mot de passe'
+                                : 'Afficher le mot de passe'
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

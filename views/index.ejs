@@ -1,19 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Portfolio BD - Loukas</title>
 
     <link rel="stylesheet" href="/css/style.css">
+
     <link rel="icon" type="image/png" href="/images/favicon1.png">
+
 </head>
 
 <body>
 
 <header class="header">
+
     <div class="container nav">
 
         <a href="/" class="logo">
@@ -21,12 +27,17 @@
         </a>
 
         <nav>
+
             <a href="#bd">BD</a>
+
             <a href="#about">À propos</a>
+
             <a href="#contact">Contact</a>
+
         </nav>
 
     </div>
+
 </header>
 
 
@@ -48,8 +59,10 @@
             </h1>
 
             <p class="hero-text">
+
                 Découvrez mes bandes dessinées, mes illustrations
                 et les personnages qui peuplent mon univers.
+
             </p>
 
             <a href="#bd" class="btn">
@@ -100,7 +113,9 @@
                         <div class="comic-content">
 
                             <p class="comic-number">
+
                                 BD N°<%= String(index + 1).padStart(2, '0') %>
+
                             </p>
 
                             <h3>
@@ -177,11 +192,34 @@
             </div>
 
 
-            <p>
-                Cette partie accueillera la présentation de l'artiste,
-                son parcours en école d'art et quelques mots sur
-                son univers graphique.
-            </p>
+            <div class="about-profile">
+
+                <% if (profile && profile.profileImage) { %>
+
+                    <img
+                        src="<%= profile.profileImage %>"
+                        alt="Photo de Loukas"
+                        class="about-image"
+                    >
+
+                <% } %>
+
+
+                <% if (profile && profile.aboutText) { %>
+
+                    <p class="about-text">
+                        <%= profile.aboutText %>
+                    </p>
+
+                <% } else { %>
+
+                    <p class="about-text">
+                        Présentation de l'artiste à venir.
+                    </p>
+
+                <% } %>
+
+            </div>
 
         </div>
 
@@ -200,12 +238,26 @@
             Une question ou envie de découvrir mon travail ?
         </h2>
 
-        <a
-            href="mailto:danslaforetfanzine@gmail.com"
-            class="btn"
-        >
-            Me contacter
-        </a>
+
+        <% if (profile && profile.contactEmail) { %>
+
+            <a
+                href="mailto:<%= profile.contactEmail %>"
+                class="btn"
+            >
+                Me contacter
+            </a>
+
+        <% } else { %>
+
+            <a
+                href="mailto:danslaforetfanzine@gmail.com"
+                class="btn"
+            >
+                Me contacter
+            </a>
+
+        <% } %>
 
     </section>
 

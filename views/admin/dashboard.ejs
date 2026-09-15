@@ -30,22 +30,28 @@
         </div>
 
 
-        <div class="admin-header-actions">
+      <div class="admin-header-actions">
 
-            <a href="/admin/profil" class="btn">
-                Modifier mon profil
-            </a>
+    <a href="/admin/profil" class="btn">
+        Modifier mon à propos
+    </a>
 
+    <a href="/admin/bd/ajouter" class="btn">
+        + Ajouter une BD
+    </a>
 
-            <a href="/admin/bd/ajouter" class="btn">
-                + Ajouter une BD
-            </a>
+    <a href="/admin/compte" class="btn">
+        Modifier mon compte
+    </a>
 
+    <form action="/admin/logout" method="POST">
+        <button type="submit" class="btn">
+            Se déconnecter
+        </button>
+    </form>
 
-            <form action="/admin/logout" method="POST">
-
-                <button type="submit" class="btn-delete">
-                    Se déconnecter
+</div>
+            
                 </button>
 
             </form>
