@@ -887,3 +887,132 @@ nav a:hover {
 .checkbox-field span {
     line-height: 1.4;
 }
+/* =========================
+   PORTFOLIO - LIGHTBOX
+========================= */
+
+.artwork-open {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.artwork-open img {
+    transition: transform 0.3s ease;
+}
+
+.artwork-open:hover img {
+    transform: scale(1.03);
+}
+
+.artwork-view {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.artwork-open:hover .artwork-view {
+    opacity: 1;
+}
+
+
+/* LIGHTBOX */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    background: rgba(0, 0, 0, 0.92);
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    text-align: center;
+}
+
+.lightbox-content img {
+    display: block;
+
+    max-width: 90vw;
+    max-height: 80vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+}
+
+.lightbox-content p {
+    margin-top: 15px;
+
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #fff;
+    font-size: 3rem;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.lightbox-open {
+    overflow: hidden;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .lightbox {
+        padding: 20px;
+    }
+
+    .lightbox-content img {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+    }
+}

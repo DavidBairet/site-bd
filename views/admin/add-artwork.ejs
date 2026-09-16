@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ajouter une œuvre</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon1.png">
+</head>
+
+<body>
+
+<main class="admin-page">
+
+    <div class="admin-header">
+
+        <div>
+            <p class="eyebrow">Administration</p>
+            <h1>Ajouter une œuvre</h1>
+        </div>
+
+        <a href="/admin" class="btn">
+            ← Retour au dashboard
+        </a>
+
+    </div>
+
+
+    <form
+        action="/admin/oeuvre/ajouter"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <label for="title">
+            Titre
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
+
+
+        <label for="description">
+            Description
+        </label>
+
+        <textarea
+            id="description"
+            name="description"
+            rows="6"
+            required
+        ></textarea>
+
+
+        <label for="type">
+            Type d'œuvre
+        </label>
+
+        <select
+            id="type"
+            name="type"
+            required
+        >
+            <option value="">
+                Sélectionner un type
+            </option>
+
+            <option value="illustration">
+                Illustration / Dessin
+            </option>
+
+            <option value="photographie">
+                Photographie
+            </option>
+        </select>
+
+
+        <label for="image">
+            Image
+        </label>
+
+        <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/jpeg,image/png,image/webp"
+            required
+        >
+
+
+        <label class="checkbox-field">
+            <input
+                type="checkbox"
+                name="published"
+                checked
+            >
+            <span>Publier l'œuvre</span>
+        </label>
+
+
+        <button type="submit">
+            Ajouter l'œuvre
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

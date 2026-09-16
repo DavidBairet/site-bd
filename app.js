@@ -9,6 +9,7 @@ const path = require('path');
 
 const adminRoutes = require('./routes/admin');
 const Comic = require('./models/Comic');
+const Artwork = require('./models/Artwork');
 const Profile = require('./models/Profile');
 
 const app = express();
@@ -85,18 +86,28 @@ app.get('/', async (req, res) => {
 
     try {
 
-        const comics = await Comic.find({
-            published: true
-        }).sort({
-            createdAt: -1
-        });
+       const comics = await Comic.find({
+    published: true
+}).sort({
+    createdAt: -1
+});
 
-        const profile = await Profile.findOne();
 
-        res.render('index', {
-            comics,
-            profile
-        });
+const artworks = await Artwork.find({
+    published: true
+}).sort({
+    createdAt: -1
+});
+
+
+const profile = await Profile.findOne();
+
+
+res.render('index', {
+    comics,
+    artworks,
+    profile
+});
 
     } catch (error) {
 
@@ -158,7 +169,7 @@ app.use((req, res) => {
 app.listen(PORT, () => {
 
     console.log(
-        `🚀 Site BD lancé sur http://localhost:${PORT}`
+        `🚀 Portfolio lancé sur http://localhost:${PORT}`
     );
 
 });

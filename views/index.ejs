@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portfolio BD - Loukas</title>
+    <title>Jane Doe - Portfolio artistique</title>
 
     <link rel="stylesheet" href="/css/style.css">
-
     <link rel="icon" type="image/png" href="/images/favicon1.png">
-
 </head>
 
 <body>
@@ -23,17 +18,14 @@
     <div class="container nav">
 
         <a href="/" class="logo">
-            Loukas
+            Jane Doe
         </a>
 
         <nav>
-
             <a href="#bd">BD</a>
-
+            <a href="#portfolio">Créations</a>
             <a href="#about">À propos</a>
-
             <a href="#contact">Contact</a>
-
         </nav>
 
     </div>
@@ -43,14 +35,16 @@
 
 <main>
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <section class="hero">
 
         <div class="hero-overlay">
 
             <p class="eyebrow">
-                Auteur • Illustrateur • Bande dessinée
+                Portfolio artistique
             </p>
 
             <h1>
@@ -59,13 +53,11 @@
             </h1>
 
             <p class="hero-text">
-
-                Découvrez mes bandes dessinées, mes illustrations
-                et les personnages qui peuplent mon univers.
-
+                Découvrez mes bandes dessinées, mes illustrations,
+                mes photographies et mes créations artistiques.
             </p>
 
-            <a href="#bd" class="btn">
+            <a href="#portfolio" class="btn">
                 Découvrir mes créations
             </a>
 
@@ -74,7 +66,9 @@
     </section>
 
 
-    <!-- BANDES DESSINÉES -->
+    <!-- =========================
+         BANDES DESSINÉES
+    ========================== -->
 
     <section id="bd" class="section container">
 
@@ -113,9 +107,7 @@
                         <div class="comic-content">
 
                             <p class="comic-number">
-
                                 BD N°<%= String(index + 1).padStart(2, '0') %>
-
                             </p>
 
                             <h3>
@@ -173,7 +165,103 @@
     </section>
 
 
-    <!-- À PROPOS -->
+    <!-- =========================
+         PORTFOLIO
+    ========================== -->
+
+    <section id="portfolio" class="section container">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                Portfolio
+            </p>
+
+            <h2>
+                Mes créations
+            </h2>
+
+        </div>
+
+
+        <div class="comics-grid">
+
+            <% if (artworks && artworks.length > 0) { %>
+
+                <% artworks.forEach(artwork => { %>
+
+                    <article class="comic-card">
+
+                        <!-- IMAGE CLIQUABLE -->
+
+                        <div
+                            class="comic-cover artwork-open"
+                            data-image="<%= artwork.image %>"
+                            data-title="<%= artwork.title %>"
+                            role="button"
+                            tabindex="0"
+                            aria-label="Afficher <%= artwork.title %> en grand"
+                        >
+
+                            <img
+                                src="<%= artwork.image %>"
+                                alt="<%= artwork.title %>"
+                                loading="lazy"
+                            >
+
+                            <span class="artwork-view">
+                                Voir l'œuvre
+                            </span>
+
+                        </div>
+
+
+                        <div class="comic-content">
+
+                            <p class="comic-number">
+
+                                <%= artwork.type === 'photographie'
+                                    ? 'Photographie'
+                                    : artwork.type === 'sculpture'
+                                        ? 'Sculpture'
+                                        : artwork.type === 'peinture'
+                                            ? 'Peinture'
+                                            : 'Illustration'
+                                %>
+
+                            </p>
+
+                            <h3>
+                                <%= artwork.title %>
+                            </h3>
+
+                            <p>
+                                <%= artwork.description %>
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                <% }) %>
+
+
+            <% } else { %>
+
+                <p>
+                    Mes prochaines créations seront bientôt disponibles.
+                </p>
+
+            <% } %>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         À PROPOS
+    ========================== -->
 
     <section id="about" class="about">
 
@@ -198,7 +286,7 @@
 
                     <img
                         src="<%= profile.profileImage %>"
-                        alt="Photo de Loukas"
+                        alt="Portrait de Jane Doe"
                         class="about-image"
                     >
 
@@ -214,7 +302,9 @@
                 <% } else { %>
 
                     <p class="about-text">
-                        Présentation de l'artiste à venir.
+                        Artiste passionnée par l'image et la création,
+                        j'explore différents univers à travers
+                        l'illustration, la bande dessinée et la photographie.
                     </p>
 
                 <% } %>
@@ -226,7 +316,9 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================== -->
 
     <section id="contact" class="section container contact">
 
@@ -250,12 +342,9 @@
 
         <% } else { %>
 
-            <a
-                href="mailto:danslaforetfanzine@gmail.com"
-                class="btn"
-            >
-                Me contacter
-            </a>
+            <p>
+                Les coordonnées de contact seront bientôt disponibles.
+            </p>
 
         <% } %>
 
@@ -264,7 +353,194 @@
 </main>
 
 
+<!-- =========================
+     FOOTER
+========================== -->
+
 <%- include('partials/footer') %>
+
+
+<!-- =========================
+     LIGHTBOX
+========================== -->
+
+<div
+    class="lightbox"
+    id="artworkLightbox"
+    aria-hidden="true"
+>
+
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+        type="button"
+        aria-label="Fermer l'image"
+    >
+        ×
+    </button>
+
+
+    <div class="lightbox-content">
+
+        <img
+            src=""
+            alt=""
+            id="lightboxImage"
+        >
+
+        <p id="lightboxTitle"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SCRIPT LIGHTBOX
+========================== -->
+
+<script>
+
+    const artworkButtons =
+        document.querySelectorAll('.artwork-open');
+
+    const lightbox =
+        document.getElementById('artworkLightbox');
+
+    const lightboxImage =
+        document.getElementById('lightboxImage');
+
+    const lightboxTitle =
+        document.getElementById('lightboxTitle');
+
+    const lightboxClose =
+        document.getElementById('lightboxClose');
+
+
+    function openLightbox(artwork) {
+
+        lightboxImage.src =
+            artwork.dataset.image;
+
+        lightboxImage.alt =
+            artwork.dataset.title;
+
+        lightboxTitle.textContent =
+            artwork.dataset.title;
+
+
+        lightbox.classList.add(
+            'active'
+        );
+
+        lightbox.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+        document.body.classList.add(
+            'lightbox-open'
+        );
+
+    }
+
+
+    function closeLightbox() {
+
+        lightbox.classList.remove(
+            'active'
+        );
+
+        lightbox.setAttribute(
+            'aria-hidden',
+            'true'
+        );
+
+        lightboxImage.src = '';
+
+        document.body.classList.remove(
+            'lightbox-open'
+        );
+
+    }
+
+
+    artworkButtons.forEach(artwork => {
+
+        artwork.addEventListener(
+            'click',
+            () => {
+
+                openLightbox(
+                    artwork
+                );
+
+            }
+        );
+
+
+        artwork.addEventListener(
+            'keydown',
+            event => {
+
+                if (
+                    event.key === 'Enter' ||
+                    event.key === ' '
+                ) {
+
+                    event.preventDefault();
+
+                    openLightbox(
+                        artwork
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    lightboxClose.addEventListener(
+        'click',
+        closeLightbox
+    );
+
+
+    lightbox.addEventListener(
+        'click',
+        event => {
+
+            if (
+                event.target === lightbox
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        'keydown',
+        event => {
+
+            if (
+                event.key === 'Escape' &&
+                lightbox.classList.contains('active')
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+</script>
 
 </body>
 

@@ -7,6 +7,7 @@ const path = require('path');
 const fs = require('fs');
 
 const Comic = require('../models/Comic');
+const Artwork = require('../models/Artwork');
 const Admin = require('../models/Admin');
 const Profile = require('../models/Profile');
 
@@ -320,14 +321,21 @@ const profileDir = path.join(
     'profile'
 );
 
-
+const artworksDir = path.join(
+    __dirname,
+    '..',
+    'public',
+    'uploads',
+    'artworks'
+);
 // Création automatique des dossiers
 // s'ils n'existent pas
 
 [
     coversDir,
     pdfDir,
-    profileDir
+    profileDir,
+    artworksDir
 
 ].forEach((directory) => {
 
@@ -503,7 +511,94 @@ const uploadProfile =
 
     });
 
+/* =========================
+   MULTER ŒUVRES
+========================= */
 
+const artworkStorage =
+    multer.diskStorage({
+
+        destination: (
+            req,
+            file,
+            cb
+        ) => {
+
+            cb(
+                null,
+                artworksDir
+            );
+
+        },
+
+        filename: (
+            req,
+            file,
+            cb
+        ) => {
+
+            const uniqueName =
+                Date.now() +
+                '-' +
+                Math.round(
+                    Math.random() * 1E9
+                ) +
+                path.extname(
+                    file.originalname
+                );
+
+            cb(
+                null,
+                uniqueName
+            );
+
+        }
+
+    });
+
+
+const uploadArtwork =
+    multer({
+
+        storage: artworkStorage,
+
+        limits: {
+            fileSize: 10 * 1024 * 1024
+        },
+
+        fileFilter: (
+            req,
+            file,
+            cb
+        ) => {
+
+            const allowedTypes = [
+                'image/jpeg',
+                'image/png',
+                'image/webp'
+            ];
+
+            if (
+                allowedTypes.includes(
+                    file.mimetype
+                )
+            ) {
+
+                cb(null, true);
+
+            } else {
+
+                cb(
+                    new Error(
+                        'Format image non autorisé'
+                    )
+                );
+
+            }
+
+        }
+
+    });
 /* =========================
    DASHBOARD ADMIN
 ========================= */
@@ -516,20 +611,28 @@ router.get(
         try {
 
             const comics =
-                await Comic.find()
-                    .sort({
-                        createdAt: -1
-                    });
+    await Comic.find()
+        .sort({
+            createdAt: -1
+        });
 
 
-            res.render(
-                'admin/dashboard',
-                {
-                    comics,
-                    adminRole:
-                        req.session.adminRole
-                }
-            );
+const artworks =
+    await Artwork.find()
+        .sort({
+            createdAt: -1
+        });
+
+
+res.render(
+    'admin/dashboard',
+    {
+        comics,
+        artworks,
+        adminRole:
+            req.session.adminRole
+    }
+);
 
 
         } catch (error) {
@@ -537,7 +640,7 @@ router.get(
             console.error(error);
 
             res.status(500).send(
-                'Erreur lors du chargement des BD'
+                'Erreur lors du chargement du dashboard'
             );
 
         }
@@ -1253,6 +1356,177 @@ router.post(
 
     }
 );
+/* =========================
+   PAGE AJOUT ŒUVRE
+========================= */
+
+router.get(
+    '/oeuvre/ajouter',
+    requireAuth,
+    (req, res) => {
+
+        res.render(
+            'admin/add-artwork'
+        );
+
+    }
+);
 
 
+/* =========================
+   AJOUTER UNE ŒUVRE
+========================= */
+
+router.post(
+    '/oeuvre/ajouter',
+
+    requireAuth,
+
+    uploadArtwork.single('image'),
+
+    async (req, res) => {
+
+        try {
+
+            if (!req.file) {
+
+                return res
+                    .status(400)
+                    .send(
+                        'Une image est obligatoire'
+                    );
+
+            }
+
+
+            const artwork =
+                new Artwork({
+
+                    title:
+                        req.body.title,
+
+                    description:
+                        req.body.description,
+
+                    image:
+                        '/uploads/artworks/' +
+                        req.file.filename,
+
+                    type:
+                        req.body.type,
+
+                    published:
+                        req.body.published === 'on'
+
+                });
+
+
+            await artwork.save();
+
+
+            res.redirect('/admin');
+
+
+        } catch (error) {
+
+            console.error(
+                'Erreur ajout œuvre :',
+                error
+            );
+
+            res.status(500).send(
+                'Erreur lors de l’ajout de l’œuvre'
+            );
+
+        }
+
+    }
+);
+/* =========================
+   SUPPRIMER UNE ŒUVRE
+========================= */
+
+router.post(
+    '/oeuvre/:id/supprimer',
+
+    requireAuth,
+
+    async (req, res) => {
+
+        try {
+
+            const artwork =
+                await Artwork.findById(
+                    req.params.id
+                );
+
+
+            if (!artwork) {
+
+                return res
+                    .status(404)
+                    .send(
+                        'Œuvre introuvable'
+                    );
+
+            }
+
+
+            /*
+             * Suppression de l'image
+             */
+
+            if (artwork.image) {
+
+                const imagePath =
+                    path.join(
+                        __dirname,
+                        '..',
+                        'public',
+                        artwork.image
+                    );
+
+
+                if (
+                    fs.existsSync(
+                        imagePath
+                    )
+                ) {
+
+                    fs.unlinkSync(
+                        imagePath
+                    );
+
+                }
+
+            }
+
+
+            /*
+             * Suppression MongoDB
+             */
+
+            await Artwork.findByIdAndDelete(
+                req.params.id
+            );
+
+
+            res.redirect('/admin');
+
+
+        } catch (error) {
+
+            console.error(
+                'Erreur suppression œuvre :',
+                error
+            );
+
+            res.status(500).send(
+                'Erreur lors de la suppression de l’œuvre'
+            );
+
+        }
+
+    }
+);
 module.exports = router;
