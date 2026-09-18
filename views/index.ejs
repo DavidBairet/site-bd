@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jane Doe - Portfolio artistique</title>
+    <title>Portfolio artistique - Site de démonstration | Les Sites de David</title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/images/favicon1.png">
@@ -41,27 +41,28 @@
 
     <section class="hero">
 
-        <div class="hero-overlay">
+      <div class="hero-overlay">
 
-            <p class="eyebrow">
-                Portfolio artistique
-            </p>
+    <p class="eyebrow">
+        Site de démonstration
+    </p>
 
-            <h1>
-                Bienvenue dans<br>
-                mon univers.
-            </h1>
+    <h1>
+        Un portfolio pensé<br>
+        pour les artistes.
+    </h1>
 
-            <p class="hero-text">
-                Découvrez mes bandes dessinées, mes illustrations,
-                mes photographies et mes créations artistiques.
-            </p>
+    <p class="hero-text">
+        Découvrez un exemple de site réalisé pour présenter
+        bandes dessinées, illustrations, photographies
+        et créations artistiques.
+    </p>
 
-            <a href="#portfolio" class="btn">
-                Découvrir mes créations
-            </a>
+    <a href="#portfolio" class="btn">
+        Découvrir la démo
+    </a>
 
-        </div>
+</div>
 
     </section>
 
@@ -265,91 +266,82 @@
 
     <section id="about" class="about">
 
-        <div class="container about-content">
+    <div class="container about-content">
 
-            <div>
+        <div>
 
-                <p class="eyebrow">
-                    L'artiste
-                </p>
+            <p class="eyebrow">
+                Site de démonstration
+            </p>
 
-                <h2>
-                    À propos
-                </h2>
-
-            </div>
-
-
-            <div class="about-profile">
-
-                <% if (profile && profile.profileImage) { %>
-
-                    <img
-                        src="<%= profile.profileImage %>"
-                        alt="Portrait de Jane Doe"
-                        class="about-image"
-                    >
-
-                <% } %>
-
-
-                <% if (profile && profile.aboutText) { %>
-
-                    <p class="about-text">
-                        <%= profile.aboutText %>
-                    </p>
-
-                <% } else { %>
-
-                    <p class="about-text">
-                        Artiste passionnée par l'image et la création,
-                        j'explore différents univers à travers
-                        l'illustration, la bande dessinée et la photographie.
-                    </p>
-
-                <% } %>
-
-            </div>
+            <h2>
+                À propos de cette démo
+            </h2>
 
         </div>
 
-    </section>
+        <div class="about-profile">
+
+            <% if (profile && profile.profileImage) { %>
+
+                <img
+                    src="<%= profile.profileImage %>"
+                    alt="Illustration du portfolio de démonstration"
+                    class="about-image"
+                >
+
+            <% } %>
+
+            <p class="about-text">
+                Ce site de démonstration a été imaginé et réalisé
+                par Les Sites de David afin de présenter un exemple
+                de portfolio destiné aux artistes et créateurs.
+                <br><br>
+                Il permet de présenter des créations, des bandes dessinées
+                avec lecture en ligne ainsi qu'un espace d'administration
+                permettant à l'artiste de gérer lui-même ses contenus.
+                <br><br>
+                Jane Doe est un personnage fictif utilisé uniquement
+                pour les besoins de cette démonstration.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
     <!-- =========================
          CONTACT
     ========================== -->
 
-    <section id="contact" class="section container contact">
+   <section id="contact" class="section container contact">
 
-        <p class="eyebrow">
-            Contact
-        </p>
+    <p class="eyebrow">
+        Votre projet
+    </p>
 
-        <h2>
-            Une question ou envie de découvrir mon travail ?
-        </h2>
+    <h2>
+        Vous souhaitez un site comme celui-ci ?
+    </h2>
 
+    <p>
+        Vous êtes artiste, illustrateur, auteur de BD,
+        photographe ou créateur ? Découvrez mes services
+        et contactez-moi pour discuter de votre projet.
+    </p>
 
-        <% if (profile && profile.contactEmail) { %>
+    <a
+        href="https://les-sites-de-david.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn"
+    >
+        Découvrir Les Sites de David
+    </a>
 
-            <a
-                href="mailto:<%= profile.contactEmail %>"
-                class="btn"
-            >
-                Me contacter
-            </a>
-
-        <% } else { %>
-
-            <p>
-                Les coordonnées de contact seront bientôt disponibles.
-            </p>
-
-        <% } %>
-
-    </section>
-
+</section>
 </main>
 
 
@@ -394,7 +386,9 @@
 
 </div>
 
-
+<a href="#" class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <span class="back-to-top-icon"></span>
+</a>
 <!-- =========================
      SCRIPT LIGHTBOX
 ========================== -->
@@ -539,6 +533,28 @@
 
         }
     );
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+
+    if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+
+});
+
+backToTop.addEventListener('click', event => {
+
+    event.preventDefault();
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+});
 
 </script>
 
